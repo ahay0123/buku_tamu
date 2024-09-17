@@ -47,7 +47,7 @@ include_once('templates/header.php');
                                         $no = 1 ;
                                         // Query untuk semua data dari tabel buku_tamu
                                         $tabelbukutamu = query("SELECT * FROM tabelbukutamu");
-                                        foreach($tabelbukutamu as $tamu) ;
+                                        foreach($tabelbukutamu as $tamu) :
                                         ?>
                                         <tr>
 
@@ -61,7 +61,7 @@ include_once('templates/header.php');
                                             <td> <button class="btn btn-success" type="button"> Ubah </button> 
                                                  <button class="btn btn-danger" type="button"> Hapus </button> </td>
                                         </tr>
-                                        <?php  ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
