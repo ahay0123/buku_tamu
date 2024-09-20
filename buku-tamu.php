@@ -83,7 +83,7 @@ require_once('function.php');
                                 <td> <?= $tamu['bertemu']  ?> </td>
                                 <td> <?= $tamu['kepentingan']  ?> </td>
                                 <td> <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu']?>" > Ubah </a>
-                                    <button class="btn btn-danger" type="button"> Hapus </button>
+                                    <a  href="hapus-tamu.php?id=<?= $tamu ['id_tamu']?>"class="btn btn-danger"onclick="confirm('apakah anda yakin menghapus data ini?')">Hapus </a> 
                                 </td>
                             </tr>
                         <?php endforeach; ?>
