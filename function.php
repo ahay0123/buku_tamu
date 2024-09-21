@@ -1,13 +1,14 @@
-<?php 
+<?php
 // panggil file koneksi php 
 require_once('koneksi.php');
 
 // membuat query ke / dari database 
-function query( $query ) {
+function query($query)
+{
     global $koneksi;
-    $result = mysqli_query( $koneksi, $query );
-    $rows = [ ];
-    while  ($row = mysqli_fetch_assoc($result)) {
+    $result = mysqli_query($koneksi, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
     return $rows;
@@ -28,7 +29,7 @@ function tambah_tamu($data)
 
     $query = "INSERT INTO tabelbukutamu VALUES ('$kode','$tanggal','$nama_tamu','$alamat','$no_hp','$bertemu','$kepentingan')";
 
-    mysqli_query( $koneksi, $query );
+    mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
 }
@@ -59,7 +60,8 @@ function ubah_tamu($data)
 }
 
 // function hapus data tamu 
-function hapus_tamu($id) {
+function hapus_tamu($id)
+{
     global $koneksi;
 
     $query = "DELETE FROM tabelbukutamu WHERE id_tamu = '$id'";
@@ -70,7 +72,8 @@ function hapus_tamu($id) {
 }
 
 // function tambah user 
-function tambah_user($data) {
+function tambah_user($data)
+{
     global $koneksi;
 
     $kode = htmlspecialchars($data["id_user"]);
@@ -87,4 +90,23 @@ function tambah_user($data) {
 
     return mysqli_affected_rows($koneksi);
 }
-?>
+
+// function ubah data user
+function ubah_user($data)
+{
+    global $koneksi;
+
+    $kode       =         htmlspecialchars($data["id_user"]);
+    $username   =         htmlspecialchars($data["username"]);
+    $user_role  =         htmlspecialchars($data["user_role"]);
+
+    $query = "UPDATE users SET
+                username        = '$username'
+                user_role        = '$user_role'
+                WHERE id_user       = '$kode'
+    ";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}

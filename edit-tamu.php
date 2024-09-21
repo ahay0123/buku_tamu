@@ -84,7 +84,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="modal-footer">
                 <a href="buku-tamu.php">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                 </a>
                 <a href="buku-tamu.php">
                     <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
