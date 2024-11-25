@@ -37,23 +37,13 @@ require_once('function.php');
             </div>
 <?php
         }
-    }
-
-    if (isset($_SESSION['role']) && $_SESSION ['role'] != 'admin' ) 
-        {
-            // jika data berhasil di hapus maka akan muncul alert 
-            echo "<script>alert('Anda tidak memiliki akses!')</script>";
-            // redirect ke halaman buku-tamu.php 
-            echo "<script>window.location.href='index.php'</script> ";
-    }
-    
+}
     ?>
 
-
-
-    
-
-
+    <?php if (isset($_SESSION['role']) && $_SESSION ['role'] != 'admin') {
+        echo "<script>alert('Anda tidak memiliki akses')</script>";
+        echo "<script>window.location.href='index.php'</script>";
+    }?>
     <h1 class="h3 mb-4 text-gray-800"> Data User </h1>
 
     <div class="card shadow mb-4">
@@ -122,7 +112,7 @@ $data = mysqli_fetch_array($query);
 $kodeuser = $data['kodeTerbesar'];
 
 // mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan diubah ke integer dengan (int)
-$urutan = (int) substr($kodeuser, 3, 2);
+$urutan = (int) substr($kodeuser, 2, 3);
 
 // nomor yang diambil akan ditambah  1 untuk menentukan nomor urut berikutnya 
 $urutan++;
@@ -132,7 +122,7 @@ $urutan++;
 
 // angka yang diambil tadu digabungkan dengan kode huruf yang kita inginkan, misalnya zt
 $huruf = 'usr';
-$kodeuser = $huruf . sprintf("%02s", $urutan);  
+$kodeuser = $huruf . sprintf("%02s", $urutan);
 
 ?>
 

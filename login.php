@@ -1,46 +1,16 @@
-<?php
-// memulai session
-session_start();
+<?php 
+    // memulai session
+    session_start();
 ?>
 
 <!-- cek bila ada user yang sudah login maka akan redirect ke halaman dashboard -->
-<?php
-// if(isset ($_SESSION['login'] )) {
-//     header('Location: index.php');
+<?php 
+if(isset ($_SESSION['login'] )) {
+    header('Location: index.php');
 
-//     if(password_verify($password, $row['password'])) {
-//         // set session
 
-//     }
-// }
-
-?>
-
-<?php
-require 'koneksi.php';
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $result = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
-
-    // cek apakah ada username 
-    if (mysqli_num_rows($result) === 1) {
-
-        // cek apakah passwordnya benar
-        $row = mysqli_fetch_assoc($result);
-
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['login'] = true;
-            $_SESSION['username'] = $username;
-            $_SESSION['role'] = $row['user_role'];
-            // login berhasil 
-            header("Location: index.php");
-            exit;
-        }
-    }
-    $error = true;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,20 +36,46 @@ if (isset($_POST['login'])) {
 
 </head>
 
+<?php 
+require 'koneksi.php';
+if (isset($_POST['login'])) { 
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
+    $result = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
+
+    // cek apakah ada username 
+    if (mysqli_num_rows($result) === 1) {
+
+        // cek apakah passwordnya benar
+        $row = mysqli_fetch_assoc($result);
+
+        if(password_verify($password, $row['password'])) {
+
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+
+            // login berhasil 
+            header("Location: index.php");
+            exit;
+    }
+}
+    $error = true;
+}
+?>
 
 <body class="bg-gradient-primary">
 
     <div class="container">
 
-        <?php
-        if (isset($error)) : ?>
-            <div class="alert alert-danger mt-3" role="alert">
-                Username atau password salah !
-            </div>
-        <?php
-        endif;
-        ?>
+    <?php 
+    if (isset($error)) : ?>
+    <div class="alert alert-danger mt-3" role="alert">
+            Username atau password salah !
+    </div>
+    <?php
+    endif;
+    ?>
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -101,7 +97,7 @@ if (isset($_POST['login'])) {
                                     <form method="post" action="" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="username"
+                                                id="username" 
                                                 placeholder="Username..." name="username">
                                         </div>
                                         <div class="form-group">
@@ -120,7 +116,7 @@ if (isset($_POST['login'])) {
                                         </button>
                                         <hr>
                                     </form>
-
+                                    
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>

@@ -27,6 +27,9 @@ if (isset($_GET['id'])) {
             <div class="alert alert-success" role="alert">
                 Data berhasil diubah !
             </div>
+
+         
+
         <?php
         } else {
         ?>
@@ -46,7 +49,7 @@ if (isset($_GET['id'])) {
         <h6>Data Tamu</h6>
     </div>
     <div class="card-body">
-        <form method="post" action="">
+        <form method="post" action="" enctype="multipart/form-data">
         <input type="hidden" name="id_tamu" value="<?= $id_tamu ?>">
             <div class="form-group row">
                 <label for="nama_tamu" class="col-sm-3 col-form-label"> Nama Tamu </label>
@@ -80,6 +83,14 @@ if (isset($_GET['id'])) {
                 <label for="Kepentingan" class="col-sm-3 col-form-label"> Kepentingan </label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="kepentingan" name="kepentingan" value="<?= $data['kepentingan'] ?>">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="gambar" class="col-sm-3 col-form-label"> Gambar Foto </label>
+                <div class="col-sm-8">
+                    <img src="assets/upload_gambar/<?= $data['gambar']?>" alt="">
+                    <input type="file" class="form-control" id="gambar" name="gambar" value="<?= $data['gambar'] ?>">
                 </div>
             </div>
             <div class="modal-footer">

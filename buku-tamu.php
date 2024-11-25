@@ -24,16 +24,11 @@ require_once('function.php');
     <?php
         }
     }
-
-    if (isset($_SESSION['role']) && $_SESSION ['role'] != 'operator' ) 
-    {
-        // jika data berhasil di hapus maka akan muncul alert 
-        echo "<script>alert('Anda tidak memiliki akses!')</script>";
-        // redirect ke halaman buku-tamu.php 
-        echo "<script>window.location.href='index.php'</script> ";
-}
-
     ?>
+    <?php if (isset($_SESSION['role']) && $_SESSION ['role'] != 'operator') {
+        echo "<script>alert('Anda tidak memiliki akses')</script>";
+        echo "<script>window.location.href='index.php'</script>";
+    }?>
 
 
     <h1 class="h3 mb-4 text-gray-800"> Buku Tamu </h1>
@@ -137,7 +132,7 @@ $kodeTamu = $huruf . sprintf("%03s", $urutan);
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="">
+                <form method="post" action="" enctype="multipart/form-data">
                     <input type="hidden" name="id_tamu" value="<?= $kodeTamu ?>">
                     <div class="form-group row">
                         <label for="nama_tamu" class="col-sm-3 col-form-label"> Nama Tamu </label>
@@ -171,6 +166,13 @@ $kodeTamu = $huruf . sprintf("%03s", $urutan);
                         <label for="Kepentingan" class="col-sm-3 col-form-label"> Kepentingan </label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Gambar" class="col-sm-3 col-form-label"> Gambar </label>
+                        <div class="custom-file col-sm-8">
+                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                            <label for="gambar" class="custom-file-label">Choose file</label>
                         </div>
                     </div>
                     <div class="modal-footer">
